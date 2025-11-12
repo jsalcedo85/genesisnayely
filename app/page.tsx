@@ -1,6 +1,6 @@
 export default function Home() {
-  // Calcular días desde el 26 de octubre de 2024
-  const startDate = new Date('2024-10-26');
+  // Calcular días desde el 26 de octubre de 2025
+  const startDate = new Date('2025-10-26');
   const today = new Date();
   const diffTime = Math.abs(today.getTime() - startDate.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -50,7 +50,7 @@ export default function Home() {
               <div className="flex items-center justify-center gap-3 mb-2">
                 <span className="text-3xl animate-pulse-heart">💑</span>
                 <p className="text-lg sm:text-xl font-semibold text-gray-800 dark:text-white">
-                  Juntos desde el 26 de octubre de 2024
+                  Juntos desde el 26 de octubre de 2025
                 </p>
                 <span className="text-3xl animate-pulse-heart" style={{ animationDelay: '0.3s' }}>💑</span>
               </div>
@@ -154,7 +154,7 @@ export default function Home() {
           Hecho con <span className="text-pink-600 dark:text-pink-400 animate-pulse-heart inline-block">❤️</span> por <span className="font-semibold text-pink-600 dark:text-pink-400">José</span> para <span className="font-semibold text-purple-600 dark:text-purple-400">Génesis Nayely</span>
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
-          Desde el 26 de octubre de 2024 💑
+          Desde el 26 de octubre de 2025 💑
         </p>
       </footer>
     </main>

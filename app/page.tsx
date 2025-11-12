@@ -3,6 +3,14 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
+// Declarar YouTube IFrame API
+declare global {
+  interface Window {
+    YT: any;
+    onYouTubeIframeAPIReady: () => void;
+  }
+}
+
 export default function Home() {
   // Calcular días desde el 26 de octubre de 2025
   const startDate = new Date('2025-10-26');
@@ -10,91 +18,71 @@ export default function Home() {
   const diffTime = Math.abs(today.getTime() - startDate.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   
-  // Referencia al audio
-  const audioRef = useRef<HTMLAudioElement>(null);
+  // Referencia al reproductor de YouTube
+  const playerRef = useRef<any>(null);
+  const youtubeIframeRef = useRef<HTMLDivElement>(null);
   
   // Estado para controlar el telón
   const [curtainOpen, setCurtainOpen] = useState(false);
+  const [youtubeReady, setYoutubeReady] = useState(false);
+
+  // Cargar YouTube IFrame API
+  useEffect(() => {
+    // Verificar si ya está cargado
+    if (window.YT && window.YT.Player) {
+      setYoutubeReady(true);
+      return;
+    }
+
+    // Cargar el script de YouTube IFrame API
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    if (firstScriptTag.parentNode) {
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    // Callback cuando la API está lista
+    window.onYouTubeIframeAPIReady = () => {
+      setYoutubeReady(true);
+    };
+  }, []);
+
+  // Inicializar el reproductor cuando YouTube está listo y el telón está abierto
+  useEffect(() => {
+    if (youtubeReady && curtainOpen && youtubeIframeRef.current && !playerRef.current) {
+      playerRef.current = new window.YT.Player(youtubeIframeRef.current, {
+        videoId: 'aCjvCE7XDHg',
+        playerVars: {
+          autoplay: 1,
+          start: 10, // Empezar desde los 10 segundos
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          iv_load_policy: 3,
+          modestbranding: 1,
+          playsinline: 1,
+          rel: 0,
+          showinfo: 0,
+          loop: 1,
+          playlist: 'aCjvCE7XDHg', // Necesario para loop
+        },
+        events: {
+          onReady: (event: any) => {
+            event.target.setVolume(60); // 60% de volumen
+            event.target.playVideo();
+          },
+          onError: (event: any) => {
+            console.error('Error en YouTube player:', event.data);
+          },
+        },
+      });
+    }
+  }, [youtubeReady, curtainOpen]);
 
   // Reproducir música cuando se abre el telón
-  const handleOpenCurtain = async () => {
+  const handleOpenCurtain = () => {
     setCurtainOpen(true);
-    
-    // Esperar un momento para que el estado se actualice
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    if (audioRef.current) {
-      try {
-        console.log('Intentando reproducir audio...');
-        console.log('ReadyState:', audioRef.current.readyState);
-        console.log('Src:', audioRef.current.src);
-        
-        // Cargar el audio si no está cargado
-        if (audioRef.current.readyState === 0) {
-          console.log('Cargando audio...');
-          audioRef.current.load();
-        }
-        
-        // Esperar a que el audio esté listo
-        if (audioRef.current.readyState < 2) {
-          console.log('Esperando a que el audio esté listo...');
-          await new Promise((resolve, reject) => {
-            if (!audioRef.current) {
-              reject(new Error('Audio ref no disponible'));
-              return;
-            }
-            
-            const audio = audioRef.current;
-            const timeout = setTimeout(() => {
-              audio.removeEventListener('canplay', onCanPlay);
-              audio.removeEventListener('error', onError);
-              reject(new Error('Timeout esperando audio'));
-            }, 5000);
-            
-            const onCanPlay = () => {
-              clearTimeout(timeout);
-              audio.removeEventListener('canplay', onCanPlay);
-              audio.removeEventListener('error', onError);
-              console.log('Audio listo!');
-              resolve(true);
-            };
-            
-            const onError = (e: Event) => {
-              clearTimeout(timeout);
-              audio.removeEventListener('canplay', onCanPlay);
-              audio.removeEventListener('error', onError);
-              console.error('Error en audio:', e);
-              reject(e);
-            };
-            
-            audio.addEventListener('canplay', onCanPlay, { once: true });
-            audio.addEventListener('error', onError, { once: true });
-          });
-        }
-        
-        // Configurar volumen y tiempo
-        if (audioRef.current) {
-          audioRef.current.volume = 0.6;
-          audioRef.current.currentTime = 10;
-          
-          console.log('Reproduciendo audio...');
-          // Reproducir
-          const playPromise = audioRef.current.play();
-          
-          if (playPromise !== undefined) {
-            await playPromise;
-            console.log('✅ Audio reproducido exitosamente');
-          }
-        }
-      } catch (error) {
-        console.error('❌ Error al reproducir audio:', error);
-        if (error instanceof Error) {
-          console.error('Detalles:', error.message);
-        }
-      }
-    } else {
-      console.error('❌ audioRef.current es null');
-    }
   };
 
   return (
@@ -435,30 +423,12 @@ export default function Home() {
         </p>
       </footer>
       
-      {/* Audio de fondo */}
-      <audio
-        ref={audioRef}
-        src="/media/background.mp3"
-        loop
-        preload="auto"
-        playsInline
-        className="hidden"
-        onError={(e) => {
-          console.error('Error cargando audio:', e);
-          const target = e.target as HTMLAudioElement;
-          console.error('Error code:', target.error?.code);
-          console.error('Error message:', target.error?.message);
-        }}
-        onLoadedMetadata={() => {
-          console.log('Audio metadata cargado');
-          if (audioRef.current) {
-            console.log('Duración del audio:', audioRef.current.duration);
-          }
-        }}
-        onCanPlay={() => {
-          console.log('Audio listo para reproducir');
-        }}
-      />
+      {/* Reproductor de YouTube oculto (solo audio) */}
+      {curtainOpen && (
+        <div className="fixed bottom-0 right-0 opacity-0 pointer-events-none" style={{ width: '1px', height: '1px', overflow: 'hidden' }}>
+          <div ref={youtubeIframeRef}></div>
+        </div>
+      )}
     </main>
     </>
   )

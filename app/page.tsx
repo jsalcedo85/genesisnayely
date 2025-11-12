@@ -17,18 +17,47 @@ export default function Home() {
   const [curtainOpen, setCurtainOpen] = useState(false);
 
   // Reproducir música cuando se abre el telón
-  const handleOpenCurtain = () => {
+  const handleOpenCurtain = async () => {
     setCurtainOpen(true);
-    // Pequeño delay para asegurar que el DOM esté listo
-    setTimeout(() => {
-      if (audioRef.current) {
-        audioRef.current.volume = 0.6; // 60% de volumen
-        audioRef.current.currentTime = 10; // Empezar desde los 10 segundos
-        audioRef.current.play().catch((error) => {
-          console.log('Error al reproducir:', error);
-        });
+    
+    // Esperar a que el estado se actualice y el DOM esté listo
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    if (audioRef.current) {
+      try {
+        // Asegurar que el audio esté cargado
+        if (audioRef.current.readyState < 2) {
+          await new Promise((resolve) => {
+            if (audioRef.current) {
+              audioRef.current.addEventListener('canplay', resolve, { once: true });
+              audioRef.current.load();
+            }
+          });
+        }
+        
+        // Configurar volumen y tiempo
+        audioRef.current.volume = 0.6;
+        audioRef.current.currentTime = 10;
+        
+        // Intentar reproducir
+        const playPromise = audioRef.current.play();
+        
+        if (playPromise !== undefined) {
+          await playPromise;
+          console.log('Audio reproducido exitosamente');
+        }
+      } catch (error) {
+        console.error('Error al reproducir audio:', error);
+        // Intentar de nuevo después de un momento
+        setTimeout(() => {
+          if (audioRef.current) {
+            audioRef.current.play().catch(err => {
+              console.error('Error en segundo intento:', err);
+            });
+          }
+        }, 500);
       }
-    }, 100);
+    }
   };
 
   return (
@@ -374,22 +403,10 @@ export default function Home() {
         ref={audioRef}
         src="/media/background.mp3"
         loop
-        preload="auto"
+        preload="metadata"
         playsInline
         className="hidden"
-        onLoadedData={() => {
-          // Asegurar que el volumen esté configurado cuando el audio se carga
-          if (audioRef.current && curtainOpen) {
-            audioRef.current.volume = 0.6;
-            audioRef.current.currentTime = 10; // Empezar desde los 10 segundos
-          }
-        }}
-        onCanPlay={() => {
-          // También establecer el tiempo cuando el audio está listo para reproducir
-          if (audioRef.current && curtainOpen) {
-            audioRef.current.currentTime = 10;
-          }
-        }}
+        crossOrigin="anonymous"
       />
     </main>
     </>

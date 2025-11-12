@@ -238,7 +238,7 @@ export default function Home() {
               </p>
               
               <p>
-                El 26 de octubre de 2025 marcó el inicio de algo hermoso entre nosotros. Desde ese día, cada momento juntos ha sido mágico. Recuerdo cada fecha especial: el 27 de octubre, el 31 de octubre, y el 8 de noviembre... cada uno de esos días está grabado en mi memoria como momentos perfectos.
+                Desde que comenzamos esta hermosa aventura juntos, cada momento ha sido mágico. Cada día que compartimos está grabado en mi memoria como un momento perfecto. Cada risa, cada conversación, cada instante a tu lado es un tesoro que guardo en mi corazón.
               </p>
               
               <p>

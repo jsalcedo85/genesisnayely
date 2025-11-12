@@ -70,50 +70,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Content Sections */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Card 1 */}
-          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100 dark:border-pink-900/30 relative overflow-hidden group">
-            <div className="absolute top-2 right-2 text-2xl opacity-20 group-hover:opacity-40 transition-opacity">💕</div>
-            <div className="text-5xl mb-4 animate-float">✨</div>
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
-              Especial
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              Una persona única y especial que merece lo mejor
-            </p>
-            <div className="absolute bottom-2 left-2 text-xl opacity-20 group-hover:opacity-40 transition-opacity">🌷</div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-purple-100 dark:border-purple-900/30 relative overflow-hidden group">
-            <div className="absolute top-2 right-2 text-2xl opacity-20 group-hover:opacity-40 transition-opacity">💖</div>
-            <div className="text-5xl mb-4 animate-pulse-heart">💖</div>
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
-              Amor
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              Creada con mucho cariño y dedicación por José
-            </p>
-            <div className="absolute bottom-2 left-2 text-xl opacity-20 group-hover:opacity-40 transition-opacity">💗</div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-indigo-100 dark:border-indigo-900/30 relative overflow-hidden group">
-            <div className="absolute top-2 right-2 text-2xl opacity-20 group-hover:opacity-40 transition-opacity">💝</div>
-            <div className="text-5xl mb-4 animate-float" style={{ animationDelay: '1s' }}>🌟</div>
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
-              Brillante
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              Una luz que ilumina cada día
-            </p>
-            <div className="absolute bottom-2 left-2 text-xl opacity-20 group-hover:opacity-40 transition-opacity">🌷</div>
-          </div>
-        </div>
-      </section>
-
       {/* Sección romántica adicional */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="bg-gradient-to-r from-pink-100/80 via-purple-100/80 to-indigo-100/80 dark:from-pink-900/30 dark:via-purple-900/30 dark:to-indigo-900/30 backdrop-blur-md rounded-3xl p-12 shadow-2xl border border-pink-200/50 dark:border-pink-800/30 text-center relative overflow-hidden">

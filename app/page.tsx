@@ -19,12 +19,15 @@ export default function Home() {
   // Reproducir música cuando se abre el telón
   const handleOpenCurtain = () => {
     setCurtainOpen(true);
-    if (audioRef.current) {
-      audioRef.current.volume = 0.6; // 60% de volumen
-      audioRef.current.play().catch((error) => {
-        console.log('Error al reproducir:', error);
-      });
-    }
+    // Pequeño delay para asegurar que el DOM esté listo
+    setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.volume = 0.6; // 60% de volumen
+        audioRef.current.play().catch((error) => {
+          console.log('Error al reproducir:', error);
+        });
+      }
+    }, 100);
   };
 
   return (
@@ -371,7 +374,14 @@ export default function Home() {
         src="/media/background.mp3"
         loop
         preload="auto"
+        playsInline
         className="hidden"
+        onLoadedData={() => {
+          // Asegurar que el volumen esté configurado cuando el audio se carga
+          if (audioRef.current && curtainOpen) {
+            audioRef.current.volume = 0.6;
+          }
+        }}
       />
     </main>
     </>

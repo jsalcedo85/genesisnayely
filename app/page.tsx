@@ -143,40 +143,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sección: Canciones Favoritas */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 mb-4 flex items-center justify-center gap-3">
-            <span className="text-4xl">🎵</span>
-            <span>Nuestras Canciones Favoritas</span>
-            <span className="text-4xl">🎵</span>
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">Canciones que nos recuerdan lo especial que eres</p>
-        </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            { title: "Canción Especial", artist: "Artista Favorito", emoji: "💕" },
-            { title: "Nuestra Canción", artist: "Artista Especial", emoji: "💖" },
-            { title: "Melodía del Corazón", artist: "Cantante Favorito", emoji: "🌷" },
-            { title: "Ritmo del Amor", artist: "Banda Especial", emoji: "💗" },
-            { title: "Sinfonía de Tú y Yo", artist: "Artista Romántico", emoji: "💝" },
-            { title: "Notas de Felicidad", artist: "Músico Favorito", emoji: "✨" },
-          ].map((song, index) => (
-            <div 
-              key={index}
-              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100 dark:border-pink-900/30 relative overflow-hidden group"
-            >
-              <div className="absolute top-2 right-2 text-2xl opacity-20 group-hover:opacity-40 transition-opacity">{song.emoji}</div>
-              <div className="text-4xl mb-3">{song.emoji}</div>
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{song.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400">{song.artist}</p>
-              <div className="absolute bottom-2 left-2 text-lg opacity-20 group-hover:opacity-40 transition-opacity">🎶</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Sección: Frases para Ti */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="text-center mb-12">

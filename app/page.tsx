@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function Home() {
   // Calcular días desde el 26 de octubre de 2025
   const startDate = new Date('2025-10-26');
@@ -96,6 +98,60 @@ export default function Home() {
               <span className="animate-pulse-heart" style={{ animationDelay: '1.2s' }}>💕</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Sección: Galería de Fotos */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 mb-4 flex items-center justify-center gap-3">
+            <span className="text-4xl">📸</span>
+            <span>Nuestros Momentos Juntos</span>
+            <span className="text-4xl">📸</span>
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">Recuerdos especiales que atesoramos 💕</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[1, 2, 3, 4, 5, 6].map((num) => (
+            <div 
+              key={num}
+              className="relative group"
+            >
+              {/* Marco estilo Hello Kitty */}
+              <div className="relative bg-white rounded-3xl p-5 shadow-2xl transform transition-all duration-300 hover:scale-105 hover:rotate-1">
+                {/* Borde exterior rosa grueso */}
+                <div className="absolute inset-0 rounded-3xl border-4 border-pink-300 dark:border-pink-400"></div>
+                
+                {/* Borde interior blanco */}
+                <div className="absolute inset-3 rounded-2xl border-2 border-white shadow-inner"></div>
+                
+                {/* Decoración de esquinas estilo Hello Kitty - círculos rosados */}
+                <div className="absolute -top-2 -left-2 w-7 h-7 bg-pink-300 dark:bg-pink-400 rounded-full border-3 border-white shadow-lg"></div>
+                <div className="absolute -top-2 -right-2 w-7 h-7 bg-pink-300 dark:bg-pink-400 rounded-full border-3 border-white shadow-lg"></div>
+                <div className="absolute -bottom-2 -left-2 w-7 h-7 bg-pink-300 dark:bg-pink-400 rounded-full border-3 border-white shadow-lg"></div>
+                <div className="absolute -bottom-2 -right-2 w-7 h-7 bg-pink-300 dark:bg-pink-400 rounded-full border-3 border-white shadow-lg"></div>
+                
+                {/* Corazones decorativos arriba y abajo */}
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-3xl opacity-70 animate-pulse-heart">💕</div>
+                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 text-2xl opacity-70 animate-pulse-heart" style={{ animationDelay: '0.5s' }}>🌷</div>
+                
+                {/* Imagen con padding para el marco */}
+                <div className="relative rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800 aspect-square">
+                  <Image
+                    src={`/pictures/${num}.jpeg`}
+                    alt={`Momento especial ${num}`}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+                
+                {/* Efecto de brillo al hover estilo Hello Kitty */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-pink-200/0 via-pink-200/0 to-pink-200/0 group-hover:from-pink-200/30 group-hover:via-pink-200/15 group-hover:to-pink-200/30 transition-all duration-300 pointer-events-none"></div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

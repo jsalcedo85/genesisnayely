@@ -143,6 +143,156 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Sección: Canciones Favoritas */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 mb-4 flex items-center justify-center gap-3">
+            <span className="text-4xl">🎵</span>
+            <span>Nuestras Canciones Favoritas</span>
+            <span className="text-4xl">🎵</span>
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">Canciones que nos recuerdan lo especial que eres</p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            { title: "Canción Especial", artist: "Artista Favorito", emoji: "💕" },
+            { title: "Nuestra Canción", artist: "Artista Especial", emoji: "💖" },
+            { title: "Melodía del Corazón", artist: "Cantante Favorito", emoji: "🌷" },
+            { title: "Ritmo del Amor", artist: "Banda Especial", emoji: "💗" },
+            { title: "Sinfonía de Tú y Yo", artist: "Artista Romántico", emoji: "💝" },
+            { title: "Notas de Felicidad", artist: "Músico Favorito", emoji: "✨" },
+          ].map((song, index) => (
+            <div 
+              key={index}
+              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100 dark:border-pink-900/30 relative overflow-hidden group"
+            >
+              <div className="absolute top-2 right-2 text-2xl opacity-20 group-hover:opacity-40 transition-opacity">{song.emoji}</div>
+              <div className="text-4xl mb-3">{song.emoji}</div>
+              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{song.title}</h3>
+              <p className="text-gray-600 dark:text-gray-400">{song.artist}</p>
+              <div className="absolute bottom-2 left-2 text-lg opacity-20 group-hover:opacity-40 transition-opacity">🎶</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Sección: Frases para Ti */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 mb-4 flex items-center justify-center gap-3">
+            <span className="text-4xl">💌</span>
+            <span>Frases para Ti</span>
+            <span className="text-4xl">💌</span>
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">Palabras que vienen del corazón</p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            "Eres la razón por la que mi corazón late más fuerte cada día 💕",
+            "Cada momento contigo es un regalo que atesoro profundamente 🌷",
+            "Tu sonrisa ilumina mi mundo más que cualquier estrella ✨",
+            "En tus ojos encontré mi hogar y en tu corazón mi paz 💖",
+            "Eres mi persona favorita en todo el universo 🌟",
+            "Contigo, cada día es una nueva aventura llena de amor 💗",
+            "Eres perfecta tal como eres, y eso es lo que más amo de ti 💝",
+            "Mi amor por ti crece más y más con cada latido 💓",
+          ].map((phrase, index) => (
+            <div 
+              key={index}
+              className="bg-gradient-to-br from-pink-50/80 to-purple-50/80 dark:from-pink-900/20 dark:to-purple-900/20 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-pink-200/50 dark:border-pink-800/30 relative"
+            >
+              <div className="flex items-start gap-3">
+                <span className="text-2xl flex-shrink-0">💕</span>
+                <p className="text-gray-700 dark:text-gray-300 text-lg italic leading-relaxed">{phrase}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Sección: Carta de Amor */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+        <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-2xl border-2 border-pink-200/50 dark:border-pink-800/50 relative overflow-hidden">
+          <div className="absolute top-4 left-4 text-3xl opacity-20">💌</div>
+          <div className="absolute top-4 right-4 text-3xl opacity-20">💕</div>
+          <div className="absolute bottom-4 left-4 text-3xl opacity-20">🌷</div>
+          <div className="absolute bottom-4 right-4 text-3xl opacity-20">💖</div>
+          
+          <div className="relative z-10">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 mb-2">
+                Una Carta para Ti
+              </h2>
+              <p className="text-gray-500 dark:text-gray-400">Con todo mi amor, José</p>
+            </div>
+            
+            <div className="space-y-6 text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+              <p className="text-xl font-semibold text-pink-600 dark:text-pink-400">
+                Mi querida Génesis Nayely,
+              </p>
+              
+              <p>
+                Desde el momento en que te conocí, supe que eras alguien especial. Cada día que pasa contigo es un regalo que atesoro profundamente en mi corazón. Tu sonrisa, tu forma de ser, cada pequeño detalle de ti hace que mi mundo sea más hermoso.
+              </p>
+              
+              <p>
+                El 26 de octubre de 2025 marcó el inicio de algo hermoso entre nosotros. Desde ese día, cada momento juntos ha sido mágico. Recuerdo cada fecha especial: el 27 de octubre, el 31 de octubre, y el 8 de noviembre... cada uno de esos días está grabado en mi memoria como momentos perfectos.
+              </p>
+              
+              <p>
+                Eres una persona increíble, llena de luz y amor. Cada día aprendo algo nuevo de ti y me enamoro más. Quiero que sepas que eres importante para mí, que te amo profundamente, y que estoy agradecido por tenerte en mi vida.
+              </p>
+              
+              <p>
+                Esta página es solo una pequeña muestra de todo lo que siento por ti. Espero que cuando la veas, puedas sentir todo el amor y la dedicación que puse en cada detalle.
+              </p>
+              
+              <p className="text-xl font-semibold text-purple-600 dark:text-purple-400 mt-8">
+                Con todo mi amor y cariño,<br />
+                <span className="text-2xl">José 💕</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección: Calendario de Fechas Especiales */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 mb-4 flex items-center justify-center gap-3">
+            <span className="text-4xl">📅</span>
+            <span>Nuestras Fechas Especiales</span>
+            <span className="text-4xl">📅</span>
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">Momentos inolvidables que hemos compartido juntos</p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { date: "26 de octubre de 2025", day: "Domingo", special: "Nuestro primer día juntos 💕", emoji: "💑" },
+            { date: "27 de octubre de 2025", day: "Lunes", special: "Un día lleno de risas y amor 🌷", emoji: "💖" },
+            { date: "31 de octubre de 2025", day: "Viernes", special: "Una noche especial juntos 🎃", emoji: "💗" },
+            { date: "08 de noviembre de 2025", day: "Sábado", special: "Más momentos de felicidad ✨", emoji: "💝" },
+          ].map((moment, index) => (
+            <div 
+              key={index}
+              className="bg-gradient-to-br from-pink-100/80 via-purple-100/80 to-indigo-100/80 dark:from-pink-900/30 dark:via-purple-900/30 dark:to-indigo-900/30 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-200/50 dark:border-pink-800/30 relative overflow-hidden group"
+            >
+              <div className="absolute top-3 right-3 text-3xl opacity-30 group-hover:opacity-50 transition-opacity">{moment.emoji}</div>
+              <div className="text-center">
+                <div className="text-5xl mb-4">{moment.emoji}</div>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{moment.day}</p>
+                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3">{moment.date}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm italic">{moment.special}</p>
+              </div>
+              <div className="absolute bottom-2 left-2 text-lg opacity-20 group-hover:opacity-40 transition-opacity">💕</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center relative z-10">
         <div className="flex items-center justify-center gap-2 mb-4">

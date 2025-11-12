@@ -1,4 +1,7 @@
+'use client'
+
 import Image from 'next/image'
+import { useEffect, useRef } from 'react'
 
 export default function Home() {
   // Calcular días desde el 26 de octubre de 2025
@@ -6,6 +9,20 @@ export default function Home() {
   const today = new Date();
   const diffTime = Math.abs(today.getTime() - startDate.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+  // Referencia al audio
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Reproducir música de fondo al cargar la página
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.6; // 60% de volumen
+      audioRef.current.play().catch((error) => {
+        // Manejar errores de reproducción automática (algunos navegadores bloquean autoplay)
+        console.log('Autoplay bloqueado:', error);
+      });
+    }
+  }, []);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900 relative overflow-hidden">
@@ -285,6 +302,15 @@ export default function Home() {
           Desde el 26 de octubre de 2025 💑
         </p>
       </footer>
+      
+      {/* Audio de fondo */}
+      <audio
+        ref={audioRef}
+        src="/media/background.mp3"
+        loop
+        preload="auto"
+        className="hidden"
+      />
     </main>
   )
 }

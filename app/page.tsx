@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Home() {
   // Calcular días desde el 26 de octubre de 2025
@@ -12,20 +12,82 @@ export default function Home() {
   
   // Referencia al audio
   const audioRef = useRef<HTMLAudioElement>(null);
+  
+  // Estado para controlar el telón
+  const [curtainOpen, setCurtainOpen] = useState(false);
 
-  // Reproducir música de fondo al cargar la página
-  useEffect(() => {
+  // Reproducir música cuando se abre el telón
+  const handleOpenCurtain = () => {
+    setCurtainOpen(true);
     if (audioRef.current) {
       audioRef.current.volume = 0.6; // 60% de volumen
       audioRef.current.play().catch((error) => {
-        // Manejar errores de reproducción automática (algunos navegadores bloquean autoplay)
-        console.log('Autoplay bloqueado:', error);
+        console.log('Error al reproducir:', error);
       });
     }
-  }, []);
+  };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900 relative overflow-hidden">
+    <>
+      {/* Telón inicial */}
+      {!curtainOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-200 dark:from-pink-900 dark:via-purple-900 dark:to-indigo-900 cursor-pointer transition-opacity duration-1000"
+          onClick={handleOpenCurtain}
+        >
+          {/* Decoraciones flotantes en el telón */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-20 left-10 text-6xl animate-float opacity-60" style={{ animationDelay: '0s' }}>💕</div>
+            <div className="absolute top-40 right-20 text-5xl animate-float opacity-50" style={{ animationDelay: '1s' }}>💖</div>
+            <div className="absolute bottom-40 left-20 text-5xl animate-float opacity-60" style={{ animationDelay: '2s' }}>💗</div>
+            <div className="absolute top-60 left-1/4 text-4xl animate-float opacity-40" style={{ animationDelay: '1.5s' }}>💝</div>
+            <div className="absolute bottom-60 right-1/4 text-5xl animate-float opacity-50" style={{ animationDelay: '0.5s' }}>💓</div>
+            
+            {/* Tulipanes decorativos */}
+            <div className="absolute top-32 right-32 text-5xl animate-float opacity-50" style={{ animationDelay: '2.5s' }}>🌷</div>
+            <div className="absolute bottom-32 left-32 text-4xl animate-float opacity-40" style={{ animationDelay: '3s' }}>🌷</div>
+            <div className="absolute top-1/2 left-16 text-4xl animate-float opacity-45" style={{ animationDelay: '1.2s' }}>🌷</div>
+            <div className="absolute top-1/3 right-16 text-5xl animate-float opacity-50" style={{ animationDelay: '2.2s' }}>🌷</div>
+          </div>
+
+          {/* Contenido central del telón */}
+          <div className="relative z-10 text-center px-4">
+            <div className="mb-8">
+              <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 mb-6 animate-pulse-heart">
+                Ábreme
+              </h1>
+              <div className="flex justify-center items-center gap-4 mb-6">
+                <span className="text-5xl animate-pulse-heart">💕</span>
+                <span className="text-4xl animate-pulse-heart" style={{ animationDelay: '0.3s' }}>🌷</span>
+                <span className="text-5xl animate-pulse-heart" style={{ animationDelay: '0.6s' }}>💖</span>
+              </div>
+              <p className="text-2xl sm:text-3xl text-gray-700 dark:text-gray-300 font-semibold mb-4">
+                Tócame para comenzar
+              </p>
+              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400">
+                Una sorpresa especial te espera 💝
+              </p>
+            </div>
+            
+            {/* Flecha animada */}
+            <div className="mt-12 animate-bounce">
+              <svg 
+                className="w-12 h-12 mx-auto text-pink-600 dark:text-pink-400" 
+                fill="none" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth="2" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      )}
+
+    <main className={`min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900 relative overflow-hidden transition-opacity duration-1000 ${curtainOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       {/* Decoraciones flotantes - Corazones */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 text-4xl animate-float opacity-60" style={{ animationDelay: '0s' }}>💕</div>
@@ -312,6 +374,7 @@ export default function Home() {
         className="hidden"
       />
     </main>
+    </>
   )
 }
 

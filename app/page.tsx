@@ -23,6 +23,7 @@ export default function Home() {
     setTimeout(() => {
       if (audioRef.current) {
         audioRef.current.volume = 0.6; // 60% de volumen
+        audioRef.current.currentTime = 10; // Empezar desde los 10 segundos
         audioRef.current.play().catch((error) => {
           console.log('Error al reproducir:', error);
         });
@@ -380,6 +381,13 @@ export default function Home() {
           // Asegurar que el volumen esté configurado cuando el audio se carga
           if (audioRef.current && curtainOpen) {
             audioRef.current.volume = 0.6;
+            audioRef.current.currentTime = 10; // Empezar desde los 10 segundos
+          }
+        }}
+        onCanPlay={() => {
+          // También establecer el tiempo cuando el audio está listo para reproducir
+          if (audioRef.current && curtainOpen) {
+            audioRef.current.currentTime = 10;
           }
         }}
       />

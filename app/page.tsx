@@ -271,10 +271,10 @@ export default function Home() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { date: "26 de octubre de 2025", day: "Domingo", special: "Nuestro primer día juntos 💕", emoji: "💑" },
-            { date: "27 de octubre de 2025", day: "Lunes", special: "Un día lleno de risas y amor 🌷", emoji: "💖" },
-            { date: "31 de octubre de 2025", day: "Viernes", special: "Una noche especial juntos 🎃", emoji: "💗" },
-            { date: "08 de noviembre de 2025", day: "Sábado", special: "Más momentos de felicidad ✨", emoji: "💝" },
+            { date: "26 de octubre de 2025", day: "Domingo", special: "Primer día juntos 💕", emoji: "💑" },
+            { date: "27 de octubre de 2025", day: "Lunes", special: "Los mejores 30 minutos de mi vida 🌷", emoji: "💖" },
+            { date: "31 de octubre de 2025", day: "Viernes", special: "Noche especial en el parque 🎃", emoji: "💗" },
+            { date: "08 de noviembre de 2025", day: "Sábado", special: "Juntos por siempre ✨", emoji: "💝" },
           ].map((moment, index) => (
             <div 
               key={index}

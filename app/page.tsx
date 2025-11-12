@@ -20,43 +20,80 @@ export default function Home() {
   const handleOpenCurtain = async () => {
     setCurtainOpen(true);
     
-    // Esperar a que el estado se actualice y el DOM esté listo
-    await new Promise(resolve => setTimeout(resolve, 200));
+    // Esperar un momento para que el estado se actualice
+    await new Promise(resolve => setTimeout(resolve, 300));
     
     if (audioRef.current) {
       try {
-        // Asegurar que el audio esté cargado
+        console.log('Intentando reproducir audio...');
+        console.log('ReadyState:', audioRef.current.readyState);
+        console.log('Src:', audioRef.current.src);
+        
+        // Cargar el audio si no está cargado
+        if (audioRef.current.readyState === 0) {
+          console.log('Cargando audio...');
+          audioRef.current.load();
+        }
+        
+        // Esperar a que el audio esté listo
         if (audioRef.current.readyState < 2) {
-          await new Promise((resolve) => {
-            if (audioRef.current) {
-              audioRef.current.addEventListener('canplay', resolve, { once: true });
-              audioRef.current.load();
+          console.log('Esperando a que el audio esté listo...');
+          await new Promise((resolve, reject) => {
+            if (!audioRef.current) {
+              reject(new Error('Audio ref no disponible'));
+              return;
             }
+            
+            const audio = audioRef.current;
+            const timeout = setTimeout(() => {
+              audio.removeEventListener('canplay', onCanPlay);
+              audio.removeEventListener('error', onError);
+              reject(new Error('Timeout esperando audio'));
+            }, 5000);
+            
+            const onCanPlay = () => {
+              clearTimeout(timeout);
+              audio.removeEventListener('canplay', onCanPlay);
+              audio.removeEventListener('error', onError);
+              console.log('Audio listo!');
+              resolve(true);
+            };
+            
+            const onError = (e: Event) => {
+              clearTimeout(timeout);
+              audio.removeEventListener('canplay', onCanPlay);
+              audio.removeEventListener('error', onError);
+              console.error('Error en audio:', e);
+              reject(e);
+            };
+            
+            audio.addEventListener('canplay', onCanPlay, { once: true });
+            audio.addEventListener('error', onError, { once: true });
           });
         }
         
         // Configurar volumen y tiempo
-        audioRef.current.volume = 0.6;
-        audioRef.current.currentTime = 10;
-        
-        // Intentar reproducir
-        const playPromise = audioRef.current.play();
-        
-        if (playPromise !== undefined) {
-          await playPromise;
-          console.log('Audio reproducido exitosamente');
+        if (audioRef.current) {
+          audioRef.current.volume = 0.6;
+          audioRef.current.currentTime = 10;
+          
+          console.log('Reproduciendo audio...');
+          // Reproducir
+          const playPromise = audioRef.current.play();
+          
+          if (playPromise !== undefined) {
+            await playPromise;
+            console.log('✅ Audio reproducido exitosamente');
+          }
         }
       } catch (error) {
-        console.error('Error al reproducir audio:', error);
-        // Intentar de nuevo después de un momento
-        setTimeout(() => {
-          if (audioRef.current) {
-            audioRef.current.play().catch(err => {
-              console.error('Error en segundo intento:', err);
-            });
-          }
-        }, 500);
+        console.error('❌ Error al reproducir audio:', error);
+        if (error instanceof Error) {
+          console.error('Detalles:', error.message);
+        }
       }
+    } else {
+      console.error('❌ audioRef.current es null');
     }
   };
 
@@ -403,10 +440,24 @@ export default function Home() {
         ref={audioRef}
         src="/media/background.mp3"
         loop
-        preload="metadata"
+        preload="auto"
         playsInline
         className="hidden"
-        crossOrigin="anonymous"
+        onError={(e) => {
+          console.error('Error cargando audio:', e);
+          const target = e.target as HTMLAudioElement;
+          console.error('Error code:', target.error?.code);
+          console.error('Error message:', target.error?.message);
+        }}
+        onLoadedMetadata={() => {
+          console.log('Audio metadata cargado');
+          if (audioRef.current) {
+            console.log('Duración del audio:', audioRef.current.duration);
+          }
+        }}
+        onCanPlay={() => {
+          console.log('Audio listo para reproducir');
+        }}
       />
     </main>
     </>

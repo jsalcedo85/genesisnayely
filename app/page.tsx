@@ -360,10 +360,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sección: Carta de Amor */}
+      {/* Sección: Mi Compromiso Contigo */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-2xl border-2 border-pink-200/50 dark:border-pink-800/50 relative overflow-hidden">
-          <div className="absolute top-4 left-4 text-3xl opacity-20">💌</div>
+          <div className="absolute top-4 left-4 text-3xl opacity-20">💍</div>
           <div className="absolute top-4 right-4 text-3xl opacity-20">💕</div>
           <div className="absolute bottom-4 left-4 text-3xl opacity-20">🌷</div>
           <div className="absolute bottom-4 right-4 text-3xl opacity-20">💖</div>
@@ -371,36 +371,30 @@ export default function Home() {
           <div className="relative z-10">
             <div className="text-center mb-8">
               <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 mb-2">
-                Una Carta para Ti
+                Mi Compromiso Contigo
               </h2>
-              <p className="text-gray-500 dark:text-gray-400">Con todo mi amor, José</p>
+              <p className="text-gray-500 dark:text-gray-400">En nuestra relación</p>
             </div>
             
             <div className="space-y-6 text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-              <p className="text-xl font-semibold text-pink-600 dark:text-pink-400">
+              <p className="text-xl font-semibold text-pink-600 dark:text-pink-400 text-center">
                 Mi querida Génesis Nayely,
               </p>
               
-              <p>
-                Desde el momento en que te conocí, supe que eras alguien especial. Cada día que pasa contigo es un regalo que atesoro profundamente en mi corazón. Tu sonrisa, tu forma de ser, cada pequeño detalle de ti hace que mi mundo sea más hermoso.
+              <p className="text-center">
+                Quiero que te sientas completamente segura conmigo, mi amor, porque yo te respeto, te admiro y te amo tal y como eres. No estoy contigo por algo físico, sino por la mujer increíble que eres por dentro: tu corazón, tu forma de ser, tu ternura, tu fuerza y todo lo que te hace única. Cada cosa que vivimos juntos solo me hace quererte más, porque todo lo compartimos desde el amor, desde la confianza y desde lo real.
               </p>
               
-              <p>
-                Desde que comenzamos esta hermosa aventura juntos, cada momento ha sido mágico. Cada día que compartimos está grabado en mi memoria como un momento perfecto. Cada risa, cada conversación, cada instante a tu lado es un tesoro que guardo en mi corazón.
+              <p className="text-center">
+                Yo estoy contigo porque quiero una vida a tu lado, porque quiero cuidarte, protegerte y darte la seguridad que mereces. Lo nuestro no se basa en un momento, sino en todo lo que construimos día a día. Y te prometo que nunca voy a dejar que dudes de tu valor, porque eres una mujer maravillosa y lo que tenemos nos une más y más.
               </p>
               
-              <p>
-                Eres una persona increíble, llena de luz y amor. Cada día aprendo algo nuevo de ti y me enamoro más. Quiero que sepas que eres importante para mí, que te amo profundamente, y que estoy agradecido por tenerte en mi vida.
-              </p>
-              
-              <p>
-                Esta página es solo una pequeña muestra de todo lo que siento por ti. Espero que cuando la veas, puedas sentir todo el amor y la dedicación que puse en cada detalle.
-              </p>
-              
-              <p className="text-xl font-semibold text-purple-600 dark:text-purple-400 mt-8">
-                Con todo mi amor y cariño,<br />
-                <span className="text-2xl">José 💕</span>
-              </p>
+              <div className="text-center mt-10 pt-6 border-t border-pink-200/50 dark:border-pink-800/30">
+                <p className="text-xl font-semibold text-purple-600 dark:text-purple-400">
+                  Con todo mi amor y compromiso,<br />
+                  <span className="text-2xl">José 💕</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>

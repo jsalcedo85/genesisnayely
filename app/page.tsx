@@ -242,6 +242,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Sección: Carta del Día */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+        <div className="bg-gradient-to-br from-pink-50/90 via-purple-50/90 to-indigo-50/90 dark:from-pink-900/30 dark:via-purple-900/30 dark:to-indigo-900/30 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-xl border border-pink-200/50 dark:border-pink-800/30 relative overflow-hidden">
+          {/* Decoraciones */}
+          <div className="absolute top-3 left-3 text-2xl opacity-30">💌</div>
+          <div className="absolute top-3 right-3 text-2xl opacity-30">💕</div>
+          <div className="absolute bottom-3 left-3 text-2xl opacity-30">🌷</div>
+          <div className="absolute bottom-3 right-3 text-2xl opacity-30">💖</div>
+          
+          <div className="relative z-10">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 mb-2 flex items-center justify-center gap-2">
+                <span className="text-3xl">📝</span>
+                <span>Carta del Día</span>
+                <span className="text-3xl">📝</span>
+              </h2>
+            </div>
+            
+            <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl p-6 border border-pink-200/50 dark:border-pink-800/30">
+              <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-center italic mb-4">
+                Hoy quiero recordarte lo especial que eres para mí. Cada día que pasa contigo es un regalo que atesoro en mi corazón. Tu sonrisa ilumina mi mundo y tu amor llena cada momento de felicidad. Eres increíble tal como eres, y estoy agradecido por tenerte en mi vida.
+              </p>
+              <p className="text-sm sm:text-base text-pink-600 dark:text-pink-400 font-semibold text-center">
+                Con amor, José 💕
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Sección romántica adicional */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="bg-gradient-to-r from-pink-100/80 via-purple-100/80 to-indigo-100/80 dark:from-pink-900/30 dark:via-purple-900/30 dark:to-indigo-900/30 backdrop-blur-md rounded-3xl p-12 shadow-2xl border border-pink-200/50 dark:border-pink-800/30 text-center relative overflow-hidden">

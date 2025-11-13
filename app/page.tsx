@@ -25,6 +25,39 @@ export default function Home() {
   // Estado para controlar el telón
   const [curtainOpen, setCurtainOpen] = useState(false);
   const [youtubeReady, setYoutubeReady] = useState(false);
+  
+  // Estado para el contador regresivo
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  // Calcular tiempo restante hasta el 26 de noviembre de 2025
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const targetDate = new Date('2025-11-26T00:00:00');
+      const now = new Date();
+      const difference = targetDate.getTime() - now.getTime();
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    calculateTimeLeft();
+    const interval = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Cargar YouTube IFrame API
   useEffect(() => {

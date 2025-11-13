@@ -406,6 +406,89 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Sección: Contador Regresivo - Un Mes Juntos */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+        <div className="bg-gradient-to-br from-pink-100/90 via-purple-100/90 to-indigo-100/90 dark:from-pink-900/40 dark:via-purple-900/40 dark:to-indigo-900/40 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-2xl border-2 border-pink-200/50 dark:border-pink-800/30 relative overflow-hidden">
+          {/* Decoraciones flotantes */}
+          <div className="absolute top-4 left-4 text-4xl opacity-30 animate-float">💕</div>
+          <div className="absolute top-4 right-4 text-4xl opacity-30 animate-float" style={{ animationDelay: '1s' }}>🌷</div>
+          <div className="absolute bottom-4 left-4 text-4xl opacity-30 animate-float" style={{ animationDelay: '2s' }}>💖</div>
+          <div className="absolute bottom-4 right-4 text-4xl opacity-30 animate-float" style={{ animationDelay: '1.5s' }}>💗</div>
+          
+          <div className="relative z-10 text-center">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 mb-4 flex items-center justify-center gap-3">
+              <span className="text-5xl">💑</span>
+              <span>Nuestro Primer Mes</span>
+              <span className="text-5xl">💑</span>
+            </h2>
+            
+            <p className="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+              Cada segundo que pasa nos acerca más a celebrar nuestro primer mes juntos 💕
+            </p>
+            
+            {/* Contador */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
+              {/* Días */}
+              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-pink-200/50 dark:border-pink-800/30 transform hover:scale-105 transition-transform duration-300">
+                <div className="text-5xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-2">
+                  {timeLeft.days}
+                </div>
+                <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-semibold">
+                  {timeLeft.days === 1 ? 'Día' : 'Días'}
+                </div>
+              </div>
+              
+              {/* Horas */}
+              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-purple-200/50 dark:border-purple-800/30 transform hover:scale-105 transition-transform duration-300">
+                <div className="text-5xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 mb-2">
+                  {timeLeft.hours.toString().padStart(2, '0')}
+                </div>
+                <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-semibold">
+                  {timeLeft.hours === 1 ? 'Hora' : 'Horas'}
+                </div>
+              </div>
+              
+              {/* Minutos */}
+              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-indigo-200/50 dark:border-indigo-800/30 transform hover:scale-105 transition-transform duration-300">
+                <div className="text-5xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-pink-600 mb-2">
+                  {timeLeft.minutes.toString().padStart(2, '0')}
+                </div>
+                <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-semibold">
+                  {timeLeft.minutes === 1 ? 'Minuto' : 'Minutos'}
+                </div>
+              </div>
+              
+              {/* Segundos */}
+              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-pink-200/50 dark:border-pink-800/30 transform hover:scale-105 transition-transform duration-300">
+                <div className="text-5xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 mb-2 animate-pulse">
+                  {timeLeft.seconds.toString().padStart(2, '0')}
+                </div>
+                <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-semibold">
+                  {timeLeft.seconds === 1 ? 'Segundo' : 'Segundos'}
+                </div>
+              </div>
+            </div>
+            
+            {/* Mensaje */}
+            <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl p-6 border border-pink-200/50 dark:border-pink-800/30 max-w-2xl mx-auto">
+              <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 italic">
+                "El 26 de noviembre celebraremos nuestro primer mes juntos. Cada momento contigo es especial y este contador me recuerda lo afortunado que soy de tenerte en mi vida." 💕
+              </p>
+              <p className="text-base sm:text-lg text-pink-600 dark:text-pink-400 font-semibold mt-4">
+                - José
+              </p>
+            </div>
+            
+            {/* Fecha objetivo */}
+            <div className="mt-8 flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400">
+              <span className="text-2xl">📅</span>
+              <span className="text-lg font-semibold">26 de noviembre de 2025</span>
+              <span className="text-2xl">💕</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Sección: Calendario de Fechas Especiales */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="text-center mb-12">
